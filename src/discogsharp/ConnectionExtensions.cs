@@ -13,4 +13,9 @@ public static class ConnectionExtensions
     {
         return new ImageService(connection);
     }
+
+    public static ICollectionService CreateCollectionService(this Connection connection)
+    {
+        return new CollectionService(connection);
+    }
 }
