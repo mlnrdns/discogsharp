@@ -20,6 +20,10 @@ public abstract class Connection
         HttpClient.BaseAddress = Constants.DiscogsUri;
     }
 
+    protected Connection(HttpClient httpClient) : this(Constants.DefaultUserAgent, httpClient)
+    {        
+    }
+
     protected Connection(string userAgent) : this(userAgent, new HttpClient())
     {
         this.UserAgent = userAgent ?? throw new ArgumentNullException(nameof(userAgent));
