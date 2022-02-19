@@ -1,3 +1,4 @@
+using System.Runtime.Loader;
 using System.Text;
 using discogsharp.Domain;
 using discogsharp.Utils;
@@ -34,6 +35,20 @@ public class CollectionService : ICollectionService
 
     public async Task<Folder> DeleteFolderAsync(string username, int id, CancellationToken cancellationToken = default) => await this.connection.SendRequest<Folder>(HttpMethod.Delete,
         $"users/{username}/collection/folders/{id}",
+        cancellationToken);
+
+    public async Task<PaginatedResponse<CollectionItem>> GetCollectionItemsByReleaseAsync(
+        string username,
+        int releaseId,
+        int page = Constants.DefaultPage,
+        int perPage = Constants.DefaultPerPage,
+        CancellationToken cancellationToken = default) => await this.connection.SendPagedRequest<CollectionItem>(HttpMethod.Get,
+        $"users/{username}/collection/releases/{releaseId}",
+        new Dictionary<string, string>()
+        {
+            [Constants.PageQueryParameterName] = $"{page}",
+            [Constants.PerPageQueryParameterName] = $"{perPage}"
+        },
         cancellationToken);
 
 
