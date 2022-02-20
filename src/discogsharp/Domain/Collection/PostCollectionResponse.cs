@@ -1,6 +1,6 @@
 namespace discogsharp.Domain;
 
-public class AddFolderResponse
+public class PostCollectionResponse
 {
     public int InstanceId { get; set; }
     public string ResourceUrl { get; set; }
