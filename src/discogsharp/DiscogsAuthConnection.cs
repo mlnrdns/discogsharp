@@ -18,26 +18,6 @@ public sealed class DiscogsAuthConnection : Connection
     {
     }
 
-    public static DiscogsAuthConnection WithPersonalAccessToken(string personalAccessToken) => new()
-    {
-        RequestAuthorization = $"token={personalAccessToken}"
-    };
-
-    public static DiscogsAuthConnection WithPersonalAccessToken(string personalAccessToken, HttpClient httpClient) => new(httpClient)
-    {
-        RequestAuthorization = $"token={personalAccessToken}"
-    };
-
-    public static DiscogsAuthConnection WithPersonalAccessToken(string personalAccessToken, string userAgent) => new(userAgent)
-    {
-        RequestAuthorization = $"token={personalAccessToken}"
-    };
-
-    public static DiscogsAuthConnection WithPersonalAccessToken(string personalAccessToken, string userAgent, HttpClient httpClient) => new(userAgent, httpClient)
-    {
-        RequestAuthorization = $"token={personalAccessToken}"
-    };
-
     public static DiscogsAuthConnection WithKeyAndSecret(string key, string secret) => new()
     {
         RequestAuthorization = $"key={key}, secret={secret}"
@@ -56,5 +36,25 @@ public sealed class DiscogsAuthConnection : Connection
     public static DiscogsAuthConnection WithKeyAndSecret(string key, string secret, string userAgent, HttpClient httpClient) => new(userAgent, httpClient)
     {
         RequestAuthorization = $"key={key}, secret={secret}"
+    };
+
+    public static DiscogsAuthConnection WithPersonalAccessToken(string personalAccessToken) => new()
+    {
+        RequestAuthorization = $"token={personalAccessToken}"
+    };
+
+    public static DiscogsAuthConnection WithPersonalAccessToken(string personalAccessToken, HttpClient httpClient) => new(httpClient)
+    {
+        RequestAuthorization = $"token={personalAccessToken}"
+    };
+
+    public static DiscogsAuthConnection WithPersonalAccessToken(string personalAccessToken, string userAgent) => new(userAgent)
+    {
+        RequestAuthorization = $"token={personalAccessToken}"
+    };
+
+    public static DiscogsAuthConnection WithPersonalAccessToken(string personalAccessToken, string userAgent, HttpClient httpClient) => new(userAgent, httpClient)
+    {
+        RequestAuthorization = $"token={personalAccessToken}"
     };
 }
