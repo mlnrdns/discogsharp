@@ -19,7 +19,7 @@ public interface IDatabaseService
 
     Task<ReleaseRatingByUser> GetReleaseRatingByUserAsync(int id, string username, CancellationToken cancellationToken = default);
     Task<ReleaseRatingByUser> AddOrUpdateReleaseRatingByUserAsync(int id, string username, int rating, CancellationToken cancellationToken = default);
-    Task<ReleaseRatingByUser> DeleteReleaseRatingByUserAsync(int id, string username, CancellationToken cancellationToken = default);
+    Task<NoContent> DeleteReleaseRatingByUserAsync(int id, string username, CancellationToken cancellationToken = default);
     Task<Master> GetMasterAsync(int id, CancellationToken cancellationToken = default);
 
     Task<PaginatedResponse<MasterVersion>> GetMasterVersionsAsync(int id, int page = Constants.DefaultPage, int perPage = Constants.DefaultPerPage, CancellationToken cancellationToken = default);
