@@ -1,7 +1,7 @@
-﻿using System.Net.Http.Headers;
-using discogsharp.Domain;
+﻿using discogsharp.Domain;
 using discogsharp.Utils;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace discogsharp;
 
@@ -21,7 +21,7 @@ public abstract class Connection
     }
 
     protected Connection(HttpClient httpClient) : this(Constants.DefaultUserAgent, httpClient)
-    {        
+    {
     }
 
     protected Connection(string userAgent) : this(userAgent, new HttpClient())
@@ -37,6 +37,7 @@ public abstract class Connection
     {
         return await this.SendRequest<T>(method, path, content, null, cancellationToken);
     }
+
     public async Task<T> SendRequest<T>(HttpMethod method, string path, CancellationToken cancellationToken = default) where T : class
     {
         return await this.SendRequest<T>(method, path, null, null, cancellationToken);
@@ -96,5 +97,4 @@ public abstract class Connection
     => await SendRequest<PaginatedResponse<T>>(method, path, queryStringParameters, cancellationToken);
 
     public async Task<byte[]> GetByteArrayAsync(string uri, CancellationToken cancellationToken = default) => await HttpClient!.GetByteArrayAsync(uri, cancellationToken);
-
 }

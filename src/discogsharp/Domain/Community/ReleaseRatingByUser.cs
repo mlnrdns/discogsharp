@@ -6,6 +6,7 @@ namespace discogsharp.Domain
     {
         public int? ReleaseId { get; set; }
         public string? Username { get; set; }
+
         [JsonProperty("rating")]
         public int? Rating { get; set; }
     }

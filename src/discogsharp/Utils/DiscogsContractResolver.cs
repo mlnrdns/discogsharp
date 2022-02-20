@@ -1,7 +1,7 @@
-using System.Reflection;
 using discogsharp.Domain;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Reflection;
 
 namespace discogsharp.Utils;
 

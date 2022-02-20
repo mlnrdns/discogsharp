@@ -6,5 +6,6 @@ public abstract class Resource
 {
     [JsonProperty("id")]
     public int Id { get; set; }
+
     public string ResourceUrl { get; set; } = null!;
 }

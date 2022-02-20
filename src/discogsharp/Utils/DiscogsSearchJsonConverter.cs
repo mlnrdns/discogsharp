@@ -1,7 +1,7 @@
-using System.Reflection;
 using discogsharp.Domain;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Reflection;
 
 namespace discogsharp.Utils;
 
@@ -28,6 +28,7 @@ public class DiscogsSearchJsonConverter : JsonConverter
             _ => throw new Exception($"The given result type {jObject["type"]} is not supported!"),
         };
     }
+
     public override bool CanConvert(Type objectType)
     {
         return typeof(SearchResult).GetTypeInfo().IsAssignableFrom(objectType.GetTypeInfo());
