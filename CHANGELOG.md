@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.2.0] - 2022-02-21
+
+### Added
+
+* Full support for Collection API
+
 ## [0.1.6] - 2022-02-19
 
 ### Added
@@ -11,7 +17,7 @@
 ### Initial release
 
 * Authentication with Discogs auth flow (both personal access token and key/password is supported)
-* DataBase API including image download is fully supported
+* Database API including image download is fully supported
 * Rate limit can be added
 * Full asynchronous and cancellable operation
 * Pagination is supported
