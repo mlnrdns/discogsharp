@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace discogsharp.Domain;
@@ -6,5 +5,5 @@ namespace discogsharp.Domain;
 public class FolderList
 {
     [JsonProperty("folders")]
-    List<Folder>? Folders { get; set; }
+    private List<Folder>? Folders { get; set; }
 }

@@ -43,7 +43,7 @@ public sealed class DiscogsAuthConnection : Connection
         RequestAuthorization = $"key={key}, secret={secret}"
     };
 
-     public static DiscogsAuthConnection WithKeyAndSecret(string key, string secret, HttpClient httpClient) => new(httpClient)
+    public static DiscogsAuthConnection WithKeyAndSecret(string key, string secret, HttpClient httpClient) => new(httpClient)
     {
         RequestAuthorization = $"key={key}, secret={secret}"
     };

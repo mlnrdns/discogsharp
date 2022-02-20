@@ -1,4 +1,5 @@
 using System.Net.Http.Headers;
+
 namespace discogsharp.Utils;
 
 public class RateLimit
