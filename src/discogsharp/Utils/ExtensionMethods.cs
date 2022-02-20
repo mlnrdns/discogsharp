@@ -6,6 +6,17 @@ namespace discogsharp.Utils;
 
 public static class ExtensionMethods
 {
+    public static Dictionary<string, string> AsDictionary(this object source)
+    {
+        if (source == null)
+            return null;
+
+        return JObject.FromObject(source, JsonSerializer.CreateDefault(DiscogsSerializerSettings.Default))
+            .Properties()
+            .Where(x => !(x.Value.Type == JTokenType.Null || string.IsNullOrWhiteSpace(x.Value.ToString()) || x.Value.ToString().Equals("NONE", StringComparison.OrdinalIgnoreCase)))
+            .ToDictionary(x => x.Name, x => x.Value.ToString());
+    }
+
     public static IEnumerable<T> AsEnumerable<T>(this T item)
     {
         yield return item;
@@ -34,16 +45,5 @@ public static class ExtensionMethods
         }
 
         return sb.ToString();
-    }
-
-    public static Dictionary<string, string> AsDictionary(this object source)
-    {
-        if (source == null)
-            return null;
-
-        return JObject.FromObject(source, JsonSerializer.CreateDefault(DiscogsSerializerSettings.Default))
-            .Properties()
-            .Where(x => !(x.Value.Type == JTokenType.Null || string.IsNullOrWhiteSpace(x.Value.ToString()) || x.Value.ToString().Equals("NONE", StringComparison.OrdinalIgnoreCase)))
-            .ToDictionary(x => x.Name, x => x.Value.ToString());
     }
 }

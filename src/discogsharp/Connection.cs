@@ -33,22 +33,37 @@ public abstract class Connection
     {
     }
 
-    public async Task<T> SendRequest<T>(HttpMethod method, string path, StringContent content, CancellationToken cancellationToken = default) where T : class
+    public async Task<byte[]> GetByteArrayAsync(string uri, CancellationToken cancellationToken = default) => await HttpClient!.GetByteArrayAsync(uri, cancellationToken);
+
+    public async Task<PaginatedResponse<T>> SendPagedRequestAsync<T>(HttpMethod method, string path, Dictionary<string, string>? queryStringParameters, CancellationToken cancellationToken = default)
+    => await SendRequestAsync<PaginatedResponse<T>>(method, path, queryStringParameters, cancellationToken);
+
+    public async Task<IEnumerable<PaginatedResponse<T>>> SendPagedRequestAsync<T>(HttpMethod method, string path, CancellationToken cancellationToken = default)
     {
-        return await this.SendRequest<T>(method, path, content, null, cancellationToken);
+        var queryParameters = new Dictionary<string, string>()
+        {
+            [Constants.PageQueryParameterName] = "1",
+            [Constants.PerPageQueryParameterName] = "100"
+        };
+
+        var firstResponse = await SendRequestAsync<PaginatedResponse<T>>(method, path, queryParameters, cancellationToken);
+
+        var totalPages = firstResponse.Pagination.Pages;
+
+        return totalPages < 2
+            ? firstResponse.AsEnumerable()
+            : (await Task.WhenAll(Enumerable
+                .Range(2, totalPages - 1)
+                .Select(async p =>
+                {
+                    queryParameters[Constants.PageQueryParameterName] = $"{p}";
+                    return await this.SendRequestAsync<PaginatedResponse<T>>(method, path, queryParameters, cancellationToken);
+                })
+                ))
+                .Prepend(firstResponse);
     }
 
-    public async Task<T> SendRequest<T>(HttpMethod method, string path, CancellationToken cancellationToken = default) where T : class
-    {
-        return await this.SendRequest<T>(method, path, null, null, cancellationToken);
-    }
-
-    public async Task<T> SendRequest<T>(HttpMethod method, string path, Dictionary<string, string>? queryStringParameters, CancellationToken cancellationToken = default) where T : class
-    {
-        return await this.SendRequest<T>(method, path, null, queryStringParameters, cancellationToken);
-    }
-
-    public async Task<T> SendRequest<T>(HttpMethod method, string path, StringContent? content, Dictionary<string, string>? queryStringParameters, CancellationToken cancellationToken = default) where T : class
+    public async Task<T> SendRequestAsync<T>(HttpMethod method, string path, StringContent? content, Dictionary<string, string>? queryStringParameters, CancellationToken cancellationToken = default) where T : class
     {
         var httpRequestMessage = new HttpRequestMessage
         {
@@ -68,33 +83,18 @@ public abstract class Connection
         return JsonConvert.DeserializeObject<T>(responseContent, DiscogsSerializerSettings.Default);
     }
 
-    public async Task<IEnumerable<PaginatedResponse<T>>> SendPagedRequest<T>(HttpMethod method, string path, CancellationToken cancellationToken = default)
+    public async Task<T> SendRequestAsync<T>(HttpMethod method, string path, CancellationToken cancellationToken = default) where T : class
     {
-        var queryParameters = new Dictionary<string, string>()
-        {
-            [Constants.PageQueryParameterName] = "1",
-            [Constants.PerPageQueryParameterName] = "100"
-        };
-
-        var firstResponse = await SendRequest<PaginatedResponse<T>>(method, path, queryParameters, cancellationToken);
-
-        var totalPages = firstResponse.Pagination.Pages;
-
-        return totalPages < 2
-            ? firstResponse.AsEnumerable()
-            : (await Task.WhenAll(Enumerable
-                .Range(2, totalPages - 1)
-                .Select(async p =>
-                {
-                    queryParameters[Constants.PageQueryParameterName] = $"{p}";
-                    return await this.SendRequest<PaginatedResponse<T>>(method, path, queryParameters, cancellationToken);
-                })
-                ))
-                .Prepend(firstResponse);
+        return await this.SendRequestAsync<T>(method, path, null, null, cancellationToken);
     }
 
-    public async Task<PaginatedResponse<T>> SendPagedRequest<T>(HttpMethod method, string path, Dictionary<string, string>? queryStringParameters, CancellationToken cancellationToken = default)
-    => await SendRequest<PaginatedResponse<T>>(method, path, queryStringParameters, cancellationToken);
+    public async Task<T> SendRequestAsync<T>(HttpMethod method, string path, StringContent content, CancellationToken cancellationToken = default) where T : class
+    {
+        return await this.SendRequestAsync<T>(method, path, content, null, cancellationToken);
+    }
 
-    public async Task<byte[]> GetByteArrayAsync(string uri, CancellationToken cancellationToken = default) => await HttpClient!.GetByteArrayAsync(uri, cancellationToken);
+    public async Task<T> SendRequestAsync<T>(HttpMethod method, string path, Dictionary<string, string>? queryStringParameters, CancellationToken cancellationToken = default) where T : class
+    {
+        return await this.SendRequestAsync<T>(method, path, null, queryStringParameters, cancellationToken);
+    }
 }

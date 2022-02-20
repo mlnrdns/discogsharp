@@ -4,9 +4,9 @@ namespace discogsharp.Utils;
 
 public class RateLimit
 {
+    public int Remaining { get; set; }
     public int Total { get; set; }
     public int Used { get; set; }
-    public int Remaining { get; set; }
 
     public RateLimit(HttpResponseMessage response)
     {
