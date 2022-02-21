@@ -1,6 +1,5 @@
 # discogsharp
-
-[![.NET](https://github.com/mlnrdns/discogsharp/actions/workflows/github-pipeline.yml/badge.svg?branch=master)](https://github.com/mlnrdns/discogsharp/actions/workflows/github-pipeline.yml)
+[![Github Actions](https://github.com/mlnrdns/discogsharp/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/mlnrdns/discogsharp/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 .NET library to access [Discogs API](https://www.discogs.com/developers/).
