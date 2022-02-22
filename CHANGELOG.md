@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.3.0] - 2022-02-22
+
+### Added
+
+* Full support for User WantList API
+
 ## [0.2.0] - 2022-02-21
 
 ### Added

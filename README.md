@@ -9,6 +9,7 @@
 * Authentication with Discogs auth flow (both personal access token and key/password is supported)
 * [Database API](https://www.discogs.com/developers/#page:database) including image download is fully supported
 * [Collection API](https://www.discogs.com/developers#page:user-collection) is fully supported
+* [User WantList API](https://www.discogs.com/developers#page:user-wantlist) is fully supported
 * Rate limit can be added
 * Full asynchronous and cancellable operation
 * Pagination is supported
