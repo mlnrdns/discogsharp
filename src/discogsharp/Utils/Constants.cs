@@ -22,6 +22,6 @@ public static class Constants
         { typeof(MasterVersion), "Versions" },
         { typeof(SearchResult), "Results" },
         { typeof(CollectionItem), "Releases" },
-        { typeof(Wants), "Wants" },
+        { typeof(WantedItem), "Wants" },
     };
 }
