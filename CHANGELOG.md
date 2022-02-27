@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.4.0] - 2022-02-27
+
+### Added
+
+* Full support for User Lists API
+
 ## [0.3.0] - 2022-02-22
 
 ### Added

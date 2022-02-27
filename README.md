@@ -7,9 +7,11 @@
 ## Features
 
 * Authentication with Discogs auth flow (both personal access token and key/password is supported)
-* [Database API](https://www.discogs.com/developers/#page:database) including image download is fully supported
-* [Collection API](https://www.discogs.com/developers#page:user-collection) is fully supported
-* [User WantList API](https://www.discogs.com/developers#page:user-wantlist) is fully supported
+* Full support for:
+    * [Database API](https://www.discogs.com/developers/#page:database) including image download
+    * [Collection API](https://www.discogs.com/developers#page:user-collection)
+    * [User WantList API](https://www.discogs.com/developers#page:user-wantlist)
+    * [User Lists API](https://www.discogs.com/developers#page:user-lists)
 * Rate limit can be added
 * Full asynchronous and cancellable operation
 * Pagination is supported
@@ -20,6 +22,7 @@
 * Full Discogs API implementation
 * Discogs monthly dump processing
 * Unit tests 
+
 ## How it works
 
 ### Creating the client service
