@@ -11,6 +11,7 @@ internal class DiscogsSerializerSettings : JsonSerializerSettings
     {
         Converters.Add(new StringEnumConverter());
         Converters.Add(new DiscogsSearchJsonConverter());
+        Converters.Add(new DiscogsListEntityJsonConverter());
         ContractResolver = new DiscogsContractResolver();
     }
 }

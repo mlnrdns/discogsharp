@@ -10,5 +10,7 @@ public static class ConnectionExtensions
 
     public static IImageService CreateImageService(this Connection connection) => new ImageService(connection);
 
+    public static IListService CreateListService(this Connection connection) => new ListService(connection);
+
     public static IWantService CreateWantService(this Connection connection) => new WantService(connection);
 }

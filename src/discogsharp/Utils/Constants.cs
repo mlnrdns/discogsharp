@@ -23,5 +23,6 @@ public static class Constants
         { typeof(SearchResult), "Results" },
         { typeof(CollectionItem), "Releases" },
         { typeof(WantedItem), "Wants" },
+        { typeof(DiscogsListForUser), "Lists" }
     };
 }
