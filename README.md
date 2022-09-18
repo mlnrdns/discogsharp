@@ -35,9 +35,9 @@ var databaseService = discogsConnection.CreateDatabaseService();
 ### Running some queries
 
 ```csharp
-var artist = databaseService.GetArtistAsync(92973);
-var release = databaseService.GetReleaseAsync(3408576);
-var newRating = databaseService.AddOrUpdateReleaseRatingByUserAsync(3408576, "username", 5);
+var artist = await databaseService.GetArtistAsync(92973);
+var release = await databaseService.GetReleaseAsync(3408576);
+var newRating = await databaseService.AddOrUpdateReleaseRatingByUserAsync(3408576, "username", 5);
 ```
 
 ### Searching the database
@@ -48,5 +48,5 @@ var filter = new SearchFilter()
     Artist = "Ulver",
     ReleaseTitle = "Bergtatt"
 };
-var searchResult = databaseService.SearchAsync(filter);
+var searchResult = await databaseService.SearchAsync(filter);
 ```
