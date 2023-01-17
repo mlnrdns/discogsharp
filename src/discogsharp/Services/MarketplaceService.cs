@@ -25,14 +25,6 @@ public class MarketplaceService : IMarketplaceService
             [Constants.PerPageQueryParameterName] = $"{perPage}"
         }, cancellationToken);
 
-    public async Task<PaginatedResponse<ListingForInventory>> GetListing(
-        long id,
-        int page = Constants.DefaultPage,
-        int perPage = Constants.DefaultPerPage,
-        CancellationToken cancellationToken = default) => await connection.SendPagedRequestAsync<ListingForInventory>(HttpMethod.Get, $"marketplace/listings/{id}", new Dictionary<string, string>()
-        {
-            [Constants.PageQueryParameterName] = $"{page}",
-            [Constants.PerPageQueryParameterName] = $"{perPage}"
-        }, cancellationToken);
-}
+    public async Task<Listing> GetListing(long id, CancellationToken cancellationToken = default) => await connection.SendRequestAsync<Listing>(
+        HttpMethod.Get, $"marketplace/listings/{id}", cancellationToken);
 }

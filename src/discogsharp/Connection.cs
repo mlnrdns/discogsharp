@@ -1,7 +1,7 @@
-﻿using System.Net.Http.Headers;
-using discogsharp.Domain;
+﻿using discogsharp.Domain;
 using discogsharp.Utils;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace discogsharp;
 

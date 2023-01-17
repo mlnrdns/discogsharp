@@ -7,5 +7,4 @@ public class BasicInformationForWantedItem : BasicInformation
     public int? MasterId { get; set; }
     public string MasterUrl { get; set; }
     public List<string> Styles { get; set; }
-    
 }
