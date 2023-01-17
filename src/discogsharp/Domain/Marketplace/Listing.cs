@@ -14,7 +14,7 @@ namespace discogsharp.Domain
         public string ExternalId { get; set; }
 
         [JsonProperty("format_quantity")]
-        public int FormatQuantity { get; set; }
+        public float FormatQuantity { get; set; }
 
         [JsonProperty("in_cart")]
         public bool InCart { get; set; }
@@ -41,7 +41,7 @@ namespace discogsharp.Domain
         [JsonProperty("sleeve_condition")]
         public SleeveCondition SleeveCondition { get; set; }
 
-        public string Status { get; set; }
+        public Status Status { get; set; }
 
         public float? Weight { get; set; }
     }

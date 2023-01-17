@@ -21,6 +21,6 @@ public class ListingForInventory : Resource
     [JsonProperty("sleeve_condition")]
     public SleeveCondition SleeveCondition { get; set; }
 
-    public string Status { get; set; }
+    public Status Status { get; set; }
     public string Uri { get; set; }
 }
