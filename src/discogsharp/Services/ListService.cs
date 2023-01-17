@@ -15,7 +15,7 @@ namespace discogsharp.Services
         public async Task<IEnumerable<PaginatedResponse<DiscogsListForUser>>> GetAllByUserAsync(string username, CancellationToken cancellationToken = default)
             => await this.connection.SendPagedRequestAsync<DiscogsListForUser>(HttpMethod.Get, $"users/{username}/lists", cancellationToken);
 
-        public async Task<DiscogsList> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+        public async Task<DiscogsList> GetByIdAsync(long id, CancellationToken cancellationToken = default)
             => await this.connection.SendRequestAsync<DiscogsList>(HttpMethod.Get, $"lists/{id}", cancellationToken);
 
         public async Task<PaginatedResponse<DiscogsListForUser>> GetByUserAsync(

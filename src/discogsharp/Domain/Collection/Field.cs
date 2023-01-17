@@ -5,7 +5,7 @@ namespace discogsharp.Domain;
 public class Field
 {
     [JsonProperty("id")]
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     [JsonProperty("public")]
     public bool IsPublic { get; set; }

@@ -21,7 +21,7 @@ namespace discogsharp.Services
                 int rating,
                 CancellationToken cancellationToken = default);
 
-        Task<Folder> DeleteFolderAsync(string username, int id, CancellationToken cancellationToken = default);
+        Task<Folder> DeleteFolderAsync(string username, long id, CancellationToken cancellationToken = default);
 
         Task<NoContent> DeleteInstanceFromFolderAsync(
                 string username,
@@ -47,7 +47,7 @@ namespace discogsharp.Services
 
         Task<FieldList> GetCustomFieldsAsync(string username, CancellationToken cancellationToken = default);
 
-        Task<Folder> GetFolderAsync(string username, int id, CancellationToken cancellationToken = default);
+        Task<Folder> GetFolderAsync(string username, long id, CancellationToken cancellationToken = default);
 
         Task<FolderList> GetFolderListAsync(string username, CancellationToken cancellationToken = default);
 
@@ -59,6 +59,6 @@ namespace discogsharp.Services
                 int destinationFolderId,
                 CancellationToken cancellationToken = default);
 
-        Task<PostCollectionResponse> RenameFolderAsync(string username, int id, string newName, CancellationToken cancellationToken = default);
+        Task<PostCollectionResponse> RenameFolderAsync(string username, long id, string newName, CancellationToken cancellationToken = default);
     }
 }

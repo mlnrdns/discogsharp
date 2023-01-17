@@ -39,7 +39,7 @@ public class CollectionService : ICollectionService
         new StringContent(JsonConvert.SerializeObject(new ReleaseRatingInFolder { Rating = rating }), Encoding.UTF8, Constants.DefaultMediaType),
         cancellationToken);
 
-    public async Task<Folder> DeleteFolderAsync(string username, int id, CancellationToken cancellationToken = default) => await this.connection.SendRequestAsync<Folder>(HttpMethod.Delete,
+    public async Task<Folder> DeleteFolderAsync(string username, long id, CancellationToken cancellationToken = default) => await this.connection.SendRequestAsync<Folder>(HttpMethod.Delete,
         $"users/{username}/collection/folders/{id}",
         cancellationToken);
 
@@ -82,7 +82,7 @@ public class CollectionService : ICollectionService
     public async Task<FieldList> GetCustomFieldsAsync(string username, CancellationToken cancellationToken = default)
     => await this.connection.SendRequestAsync<FieldList>(HttpMethod.Get, $"users/{username}/collection/fields", cancellationToken);
 
-    public async Task<Folder> GetFolderAsync(string username, int id, CancellationToken cancellationToken = default) => await this.connection.SendRequestAsync<Folder>(HttpMethod.Get,
+    public async Task<Folder> GetFolderAsync(string username, long id, CancellationToken cancellationToken = default) => await this.connection.SendRequestAsync<Folder>(HttpMethod.Get,
         $"users/{username}/collection/folders/{id}",
         cancellationToken);
 
@@ -101,7 +101,7 @@ public class CollectionService : ICollectionService
         new StringContent(JsonConvert.SerializeObject(new ReleaseRatingInFolder { FolderId = destinationFolderId }), Encoding.UTF8, Constants.DefaultMediaType),
         cancellationToken);
 
-    public async Task<PostCollectionResponse> RenameFolderAsync(string username, int id, string newName, CancellationToken cancellationToken = default) => await this.connection.SendRequestAsync<PostCollectionResponse>(
+    public async Task<PostCollectionResponse> RenameFolderAsync(string username, long id, string newName, CancellationToken cancellationToken = default) => await this.connection.SendRequestAsync<PostCollectionResponse>(
             HttpMethod.Post,
         $"users/{username}/collection/folders/{id}",
         new StringContent(JsonConvert.SerializeObject(new Folder { Name = newName }), Encoding.UTF8, Constants.DefaultMediaType),
