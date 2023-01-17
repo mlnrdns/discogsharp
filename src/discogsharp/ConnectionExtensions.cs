@@ -12,5 +12,7 @@ public static class ConnectionExtensions
 
     public static IListService CreateListService(this Connection connection) => new ListService(connection);
 
+    public static IMarketplaceService CreateMarketplaceService(this Connection connection) => new MarketplaceService(connection);
+
     public static IWantService CreateWantService(this Connection connection) => new WantService(connection);
 }
