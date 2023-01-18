@@ -1,7 +1,5 @@
 using discogsharp.Domain;
 using discogsharp.Utils;
-using Newtonsoft.Json;
-using System.Text;
 
 namespace discogsharp.Services;
 
@@ -21,8 +19,11 @@ public class MarketplaceService : IMarketplaceService
             new Dictionary<string, string>(listingToAddOrUpdate.AsDictionary()),
             cancellationToken);
 
+    public async Task<NoContent> DeleteListingAsync(long id, CancellationToken cancellationToken = default)
+        => await this.connection.SendRequestAsync<NoContent>(HttpMethod.Delete, $"marketplace/listings/{id}", cancellationToken);
+
     public async Task<NoContent> EditListingAsync(long id, ListingToAddOrUpdate listingToAddOrUpdate, CancellationToken cancellationToken = default)
-        => await this.connection.SendRequestAsync<NoContent>(
+            => await this.connection.SendRequestAsync<NoContent>(
             HttpMethod.Post,
             $"marketplace/listings/{id}",
             new Dictionary<string, string>(listingToAddOrUpdate.AsDictionary()),
@@ -33,8 +34,8 @@ public class MarketplaceService : IMarketplaceService
 
     public async Task<PaginatedResponse<ListingForInventory>> GetInventoryForUser(
         string username,
-        int page = Constants.DefaultPage,
-        int perPage = Constants.DefaultPerPage,
+        long page = Constants.DefaultPage,
+        long perPage = Constants.DefaultPerPage,
         CancellationToken cancellationToken = default) => await connection.SendPagedRequestAsync<ListingForInventory>(HttpMethod.Get, $"users/{username}/inventory", new Dictionary<string, string>()
         {
             [Constants.PageQueryParameterName] = $"{page}",
