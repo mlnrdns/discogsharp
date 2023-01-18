@@ -14,13 +14,18 @@ public class MarketplaceService : IMarketplaceService
         this.connection = connection;
     }
 
-    public async Task<NoContent> EditListingAsync(
-        long id,
-        ListingToAddOrUpdate listingToAddOrUpdate,
-        CancellationToken cancellationToken = default) => await this.connection.SendRequestAsync<NoContent>(
+    public async Task<NoContent> AddListingAsync(ListingToAddOrUpdate listingToAddOrUpdate, CancellationToken cancellationToken = default)
+        => await this.connection.SendRequestAsync<NoContent>(
+            HttpMethod.Post,
+            "marketplace/listings",
+            new Dictionary<string, string>(listingToAddOrUpdate.AsDictionary()),
+            cancellationToken);
+
+    public async Task<NoContent> EditListingAsync(long id, ListingToAddOrUpdate listingToAddOrUpdate, CancellationToken cancellationToken = default)
+        => await this.connection.SendRequestAsync<NoContent>(
             HttpMethod.Post,
             $"marketplace/listings/{id}",
-            new StringContent(JsonConvert.SerializeObject(listingToAddOrUpdate), Encoding.UTF8, Constants.DefaultMediaType),
+            new Dictionary<string, string>(listingToAddOrUpdate.AsDictionary()),
             cancellationToken);
 
     public async Task<IEnumerable<PaginatedResponse<ListingForInventory>>> GetAllInventoryForUser(string username, CancellationToken cancellationToken = default)
